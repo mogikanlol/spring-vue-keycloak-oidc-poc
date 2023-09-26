@@ -9,7 +9,7 @@
 
 ### Architecture
 
-![diagram_png](oidc-diagram.png)
+![diagram_png](./docs/oidc-diagram.png)
 
 ## Setup (Windows 10)
 
@@ -75,4 +75,13 @@ Hello dear Hunter. The treasure you are looking for located at !@#$%^&
 * Remove docker container
 ```console
 docker-compose -f .\keycloak\docker-compose.yml rm -f
+```
+
+### Export Keycloak realm configuration
+```console
+docker exec -it <container-id> bash
+
+/opt/keycloak/bin/kc.sh export --dir /opt/keycloak/data/import --realm vue --users realm_file
+
+docker cp <container-id>:/opt/keycloak/data/import/vue-realm.json c:/dev/vue-realm.json
 ```
